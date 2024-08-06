@@ -46,6 +46,17 @@ app.post("/jokes", (req, res) =>{
 });
 
 //5. PUT a joke
+//NOTE: PUT requests are COMPLETE Updates. OR Replacing an item in your library
+app.put("/jokes/:id", (req, res) =>{
+  const id = parseInt(req.params.id);
+  const text = req.body.text;
+  const type = req.body.type;
+  const updatedJoke = jokes.find((joke) => {if(joke.id === id){
+    joke.jokeText = text;
+    joke.jokeType = type;
+  }});
+  res.json(updatedJoke);
+});
 
 //6. PATCH a joke
 
